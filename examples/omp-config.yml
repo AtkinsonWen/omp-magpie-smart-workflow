@@ -1,0 +1,6 @@
+# Merge these modelRoles into your existing OMP config, after connecting Magpie.
+modelRoles:
+  default: magpie/group/smart-workflow
+  smol: magpie/muze/gpt-6.1-terra
+  slow: magpie/muze/gpt-6.2-sol
+  plan: magpie/muze/gpt-6.2-sol
