@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 520" width="1120" height="520" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="cardShadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect x="0" y="0" width="1120" height="520" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="36" y="42" font-size="21" font-weight="700" fill="#0f172a">End-to-End Request Lifecycle: Magpie Routing + OMP Auto-Handoff</text>
+  <text x="36" y="65" font-size="13" fill="#475569">Magpie chooses who starts each turn (and fails over on upstream errors); OMP verifies the real backend and optionally hands bounded edits to @smol.</text>
+
+  <!-- Swimlane Headers -->
+  <!-- Stage 1 -->
+  <rect x="28" y="88" width="212" height="398" rx="12" fill="#ffffff" stroke="#cbd5e1" filter="url(#cardShadow)"/>
+  <rect x="28" y="88" width="212" height="34" rx="12" fill="#1e293b"/>
+  <rect x="28" y="108" width="212" height="14" fill="#1e293b"/>
+  <text x="134" y="110" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">1. OMP Client Entry</text>
+
+  <!-- Stage 2 -->
+  <rect x="264" y="88" width="316" height="398" rx="12" fill="#ffffff" stroke="#cbd5e1" filter="url(#cardShadow)"/>
+  <rect x="264" y="88" width="316" height="34" rx="12" fill="#1d4ed8"/>
+  <rect x="264" y="108" width="316" height="14" fill="#1d4ed8"/>
+  <text x="422" y="110" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">2. Local Magpie Gateway</text>
+
+  <!-- Stage 3 -->
+  <rect x="604" y="88" width="248" height="398" rx="12" fill="#ffffff" stroke="#cbd5e1" filter="url(#cardShadow)"/>
+  <rect x="604" y="88" width="248" height="34" rx="12" fill="#b45309"/>
+  <rect x="604" y="108" width="248" height="14" fill="#b45309"/>
+  <text x="728" y="110" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">3. Planner Verification Gate</text>
+
+  <!-- Stage 4 -->
+  <rect x="876" y="88" width="216" height="398" rx="12" fill="#ffffff" stroke="#cbd5e1" filter="url(#cardShadow)"/>
+  <rect x="876" y="88" width="216" height="34" rx="12" fill="#047857"/>
+  <rect x="876" y="108" width="216" height="14" fill="#047857"/>
+  <text x="984" y="110" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">4. Execution &amp; Reset</text>
+
+  <!-- ==================== STAGE 1 NODES ==================== -->
+  <rect x="44" y="144" width="180" height="68" rx="8" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="134" y="166" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="middle">New User Prompt</text>
+  <text x="134" y="185" font-size="11" fill="#475569" text-anchor="middle">Model: magpie/group/*</text>
+  <text x="134" y="201" font-size="10.5" fill="#64748b" text-anchor="middle">(defaultThinkingLevel: auto)</text>
+
+  <rect x="44" y="248" width="180" height="72" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="134" y="269" font-size="11.5" font-weight="700" fill="#92400e" text-anchor="middle">Bypass Conditions</text>
+  <text x="134" y="287" font-size="10.5" fill="#78350f" text-anchor="middle">Plan Mode active/paused</text>
+  <text x="134" y="303" font-size="10.5" fill="#78350f" text-anchor="middle">--plan-yolo / --prewalk</text>
+
+  <rect x="44" y="358" width="180" height="96" rx="8" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="134" y="380" font-size="12" font-weight="700" fill="#065f46" text-anchor="middle">Next Turn Auto-Restore</text>
+  <text x="134" y="399" font-size="10.5" fill="#047857" text-anchor="middle">After agent_end settles,</text>
+  <text x="134" y="415" font-size="10.5" fill="#047857" text-anchor="middle">restores routing group unless</text>
+  <text x="134" y="431" font-size="10.5" fill="#047857" text-anchor="middle">user changed model/thinking</text>
+
+  <!-- ==================== STAGE 2 NODES ==================== -->
+  <rect x="280" y="140" width="284" height="58" rx="8" fill="#eff6ff" stroke="#60a5fa"/>
+  <text x="422" y="161" font-size="12.5" font-weight="700" fill="#1e3a8a" text-anchor="middle">Intent Classifier</text>
+  <text x="422" y="180" font-size="11" fill="#1d4ed8" text-anchor="middle">jev-1.13-free ($0, 3-tier) or 3.8-flash (2-tier)</text>
+
+  <rect x="280" y="216" width="284" height="148" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="422" y="236" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Top-Down Rule Evaluation</text>
+  <line x1="294" y1="245" x2="550" y2="245" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="296" y="264" font-size="11" fill="#334155">1. compacting → cheap/fast summarizer</text>
+  <text x="296" y="283" font-size="11" font-weight="700" fill="#991b1b">2. Hard / ≥200k → Strong Planner (:high)</text>
+  <text x="296" y="302" font-size="11" fill="#5b21b6">3. images → Vision-capable tier</text>
+  <text x="296" y="321" font-size="11" fill="#1e40af">4. Routine Dev → Mid-tier (:medium)</text>
+  <text x="296" y="340" font-size="11" fill="#166534">5. Short (&lt;144k) → Fast model (:low)</text>
+  <text x="296" y="356" font-size="10.5" fill="#64748b">• Ordered failover on 429 / 5xx / timeout</text>
+
+  <rect x="280" y="384" width="284" height="74" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="4 3"/>
+  <text x="422" y="405" font-size="11.5" font-weight="700" fill="#0f172a" text-anchor="middle">Completed Routing Log (Truth Source)</text>
+  <text x="422" y="424" font-size="10.5" fill="#334155" text-anchor="middle">~/.config/magpie/routing/YYYY-MM-DD.jsonl</text>
+  <text x="422" y="442" font-size="10.5" fill="#475569" text-anchor="middle">Records exact served model, responseId &amp; sessionId</text>
+
+  <!-- ==================== STAGE 3 NODES ==================== -->
+  <rect x="620" y="140" width="216" height="76" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="728" y="162" font-size="12" font-weight="700" fill="#991b1b" text-anchor="middle">Strong Planner Investigates</text>
+  <text x="728" y="180" font-size="10.5" fill="#7f1d1d" text-anchor="middle">Reads code, traces root cause,</text>
+  <text x="728" y="196" font-size="10.5" fill="#7f1d1d" text-anchor="middle">writes concrete implementation plan</text>
+
+  <rect x="620" y="242" width="216" height="92" rx="8" fill="#fffbeb" stroke="#f59e0b"/>
+  <text x="728" y="263" font-size="12" font-weight="700" fill="#92400e" text-anchor="middle">auto-model-handoff.ts</text>
+  <text x="728" y="281" font-size="10.5" fill="#78350f" text-anchor="middle">1. Matches responseId + sessionId</text>
+  <text x="728" y="297" font-size="10.5" fill="#78350f" text-anchor="middle">2. Checks PLANNERS allowlist</text>
+  <text x="728" y="313" font-size="10.5" fill="#78350f" text-anchor="middle">3. Prompts once before 1st edit batch</text>
+
+  <rect x="620" y="360" width="216" height="98" rx="8" fill="#fefce8" stroke="#eab308"/>
+  <text x="728" y="381" font-size="11.5" font-weight="700" fill="#854d0e" text-anchor="middle">Planner Decision Tool</text>
+  <text x="728" y="400" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#713f12" text-anchor="middle">handoff_to_implementation</text>
+  <text x="728" y="422" font-size="10.5" fill="#065f46" text-anchor="middle">• action="handoff" (bounded plan)</text>
+  <text x="728" y="440" font-size="10.5" fill="#991b1b" text-anchor="middle">• action="keep" (still uncertain)</text>
+
+  <!-- ==================== STAGE 4 NODES ==================== -->
+  <rect x="892" y="140" width="184" height="68" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="984" y="162" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">Short / Routine / Vision</text>
+  <text x="984" y="180" font-size="10.5" fill="#1e3a8a" text-anchor="middle">Direct execution, no handoff</text>
+  <text x="984" y="196" font-size="10.5" fill="#475569" text-anchor="middle">Finishes turn immediately</text>
+
+  <rect x="892" y="238" width="184" height="90" rx="8" fill="#ecfdf5" stroke="#34d399"/>
+  <text x="984" y="259" font-size="12" font-weight="700" fill="#065f46" text-anchor="middle">Switch to @smol</text>
+  <text x="984" y="278" font-size="10.5" fill="#047857" text-anchor="middle">Same conversation context!</text>
+  <text x="984" y="295" font-size="10.5" fill="#047857" text-anchor="middle">Applies edits &amp; runs tests</text>
+  <text x="984" y="312" font-size="10.5" fill="#065f46" text-anchor="middle">(e.g. gpt-6.1-terra)</text>
+
+  <rect x="892" y="358" width="184" height="72" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="984" y="380" font-size="12" font-weight="700" fill="#991b1b" text-anchor="middle">Keep on Routing Group</text>
+  <text x="984" y="399" font-size="10.5" fill="#7f1d1d" text-anchor="middle">Locks task against handoff</text>
+  <text x="984" y="416" font-size="10.5" fill="#7f1d1d" text-anchor="middle">No guess if log unmatched</text>
+
+  <!-- ==================== CONNECTORS ==================== -->
+  <!-- Stage 1 -> Stage 2 -->
+  <line x1="224" y1="170" x2="276" y2="170" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- Classifier -> Rules -->
+  <line x1="422" y1="198" x2="422" y2="212" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+
+  <!-- Rules -> Log -->
+  <line x1="422" y1="364" x2="422" y2="380" stroke="#475569" stroke-width="1.8" stroke-dasharray="4 2" marker-end="url(#arrow)"/>
+
+  <!-- Rules (Hard) -> Stage 3 Planner -->
+  <path d="M 564 278 L 590 278 L 590 178 L 616 178" fill="none" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)"/>
+
+  <!-- Log -> Stage 3 Verification -->
+  <path d="M 564 420 L 590 420 L 590 290 L 616 290" fill="none" stroke="#475569" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <!-- Planner -> Gate -> Decision -->
+  <line x1="728" y1="216" x2="728" y2="238" stroke="#d97706" stroke-width="1.8" marker-end="url(#arrowAmber)"/>
+  <line x1="728" y1="334" x2="728" y2="356" stroke="#d97706" stroke-width="1.8" marker-end="url(#arrowAmber)"/>
+
+  <!-- Rules (Short/Routine) -> Stage 4 Direct (arches over top) -->
+  <path d="M 564 316 L 580 316 L 580 128 L 984 128 L 984 136" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#arrowBlue)"/>
+
+  <!-- Decision -> @smol -->
+  <path d="M 836 400 L 860 400 L 860 282 L 888 282" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Decision -> Keep -->
+  <path d="M 836 426 L 866 426 L 866 396 L 888 396" fill="none" stroke="#dc2626" stroke-width="1.8" marker-end="url(#arrowRed)"/>
+
+  <!-- Stage 4 bottom return loop -> Stage 1 Auto-Restore -->
+  <path d="M 984 486 L 984 498 L 134 498 L 134 458" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <rect x="442" y="487" width="236" height="22" rx="11" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="560" y="502" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">agent_end → reset on next prompt</text>
+</svg>

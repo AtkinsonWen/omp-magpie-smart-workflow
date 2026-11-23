@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 640" width="1120" height="640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="hdr1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="hdr2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="hdr3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect x="0" y="0" width="1120" height="640" rx="16" fill="url(#bgGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text x="40" y="46" font-size="22" font-weight="700" fill="#0f172a">Magpie Three-Group Routing Architecture</text>
+  <text x="40" y="70" font-size="13.5" fill="#475569">Shared Base: routing=order (ordered failover) · stays=turn (per-turn re-routing) · tokens &lt; 144k cache guard</text>
+
+  <!-- Top Right Legend Pills -->
+  <rect x="815" y="28" width="90" height="26" rx="13" fill="#fee2e2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="860" y="45" font-size="11.5" font-weight="600" fill="#991b1b" text-anchor="middle">HIGH Effort</text>
+  <rect x="915" y="28" width="90" height="26" rx="13" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="960" y="45" font-size="11.5" font-weight="600" fill="#1e40af" text-anchor="middle">MED Effort</text>
+  <rect x="1015" y="28" width="75" height="26" rx="13" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="1052" y="45" font-size="11.5" font-weight="600" fill="#166534" text-anchor="middle">LOW</text>
+
+  <!-- ==================== CARD 1: smart-workflow ==================== -->
+  <g transform="translate(32, 92)" filter="url(#shadow)">
+    <rect x="0" y="0" width="336" height="474" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <path d="M0 12 Q0 0 12 0 L324 0 Q336 0 336 12 L336 66 L0 66 Z" fill="url(#hdr1)"/>
+    <text x="18" y="30" font-size="16" font-weight="700" fill="#ffffff">1. group/smart-workflow</text>
+    <text x="18" y="51" font-size="12" fill="#dbeafe">OMP Quality Primary + Auto-Handoff</text>
+
+    <!-- Meta Badges -->
+    <rect x="14" y="78" width="142" height="24" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="85" y="94" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">jev-1.13-free ($0 · 0.5)</text>
+    <rect x="164" y="78" width="74" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="201" y="94" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">7 Models</text>
+    <rect x="246" y="78" width="76" height="24" rx="6" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="284" y="94" font-size="11" font-weight="600" fill="#92400e" text-anchor="middle">3-Tier Split</text>
+
+    <!-- Rules Stack -->
+    <!-- R1 -->
+    <rect x="14" y="114" width="308" height="44" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="24" y="132" font-size="11.5" font-weight="700" fill="#475569">R1 · compacting</text>
+    <text x="24" y="149" font-size="11" fill="#334155">deepseek-flash → gpt-6.1-terra:med</text>
+
+    <!-- R2 -->
+    <rect x="14" y="166" width="308" height="60" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="24" y="184" font-size="11.5" font-weight="700" fill="#991b1b">R2 · Hard / Architecture / Root Cause</text>
+    <rect x="266" y="172" width="46" height="18" rx="4" fill="#ef4444"/>
+    <text x="289" y="185" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">HIGH</text>
+    <text x="24" y="201" font-size="11" fill="#7f1d1d">gpt-6.2-sol → micu/opus → 4router/opus</text>
+    <text x="24" y="217" font-size="10.5" font-weight="600" fill="#b45309">↳ Eligible for OMP handoff → @smol</text>
+
+    <!-- R3 -->
+    <rect x="14" y="234" width="308" height="44" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="24" y="252" font-size="11.5" font-weight="700" fill="#5b21b6">R3 · images (Vision Guard)</text>
+    <text x="24" y="269" font-size="11" fill="#4c1d95">terra:med → 4router/sonnet:med → sol</text>
+
+    <!-- R4 -->
+    <rect x="14" y="286" width="308" height="48" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="24" y="304" font-size="11.5" font-weight="700" fill="#1e40af">R4 · Explicit Routine Dev</text>
+    <rect x="266" y="292" width="46" height="18" rx="4" fill="#3b82f6"/>
+    <text x="289" y="305" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">MED</text>
+    <text x="24" y="323" font-size="11" fill="#1e3a8a">terra:med → sonnet:med → deepseek-v4-pro</text>
+
+    <!-- R5 -->
+    <rect x="14" y="342" width="308" height="48" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="24" y="360" font-size="11.5" font-weight="700" fill="#166534">R5 · Short / Mechanical (tokens &lt; 144k)</text>
+    <rect x="266" y="348" width="46" height="18" rx="4" fill="#22c55e"/>
+    <text x="289" y="361" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">LOW</text>
+    <text x="24" y="379" font-size="11" fill="#14532d">deepseek-flash → gpt-6.1-terra:med</text>
+
+    <!-- Default -->
+    <rect x="14" y="398" width="308" height="62" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+    <text x="24" y="416" font-size="11" font-weight="700" fill="#334155">Default Fallback Chain (1→7)</text>
+    <text x="24" y="433" font-size="10.5" fill="#475569">terra:med → sonnet:med → v4-pro → flash</text>
+    <text x="24" y="449" font-size="10.5" fill="#475569">→ sol → micu/opus → 4router/opus</text>
+  </g>
+
+  <!-- ==================== CARD 2: smart-omni ==================== -->
+  <g transform="translate(392, 92)" filter="url(#shadow)">
+    <rect x="0" y="0" width="336" height="474" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <path d="M0 12 Q0 0 12 0 L324 0 Q336 0 336 12 L336 66 L0 66 Z" fill="url(#hdr2)"/>
+    <text x="18" y="30" font-size="16" font-weight="700" fill="#ffffff">2. group/smart-omni</text>
+    <text x="18" y="51" font-size="12" fill="#d1fae5">Cross-Provider Pool · Max Savings &amp; Failover</text>
+
+    <!-- Meta Badges -->
+    <rect x="14" y="78" width="146" height="24" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="87" y="94" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">jev-1.13-free ($0 · 0.35)</text>
+    <rect x="166" y="78" width="76" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="204" y="94" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">16 Models</text>
+    <rect x="248" y="78" width="74" height="24" rx="6" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="285" y="94" font-size="11" font-weight="600" fill="#92400e" text-anchor="middle">6 Vendors</text>
+
+    <!-- R1 -->
+    <rect x="14" y="114" width="308" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="24" y="132" font-size="11.5" font-weight="700" fill="#475569">R1 · compacting</text>
+    <text x="24" y="150" font-size="11" fill="#334155">hydrogen → MiniMax-M3 → deepseek-flash</text>
+
+    <!-- R2 -->
+    <rect x="14" y="170" width="308" height="68" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="24" y="188" font-size="11.5" font-weight="700" fill="#991b1b">R2 · Hard / Concurrency / Math</text>
+    <rect x="266" y="176" width="46" height="18" rx="4" fill="#ef4444"/>
+    <text x="289" y="189" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">HIGH</text>
+    <text x="24" y="207" font-size="11" fill="#7f1d1d">argon → agy/opus → neon → gpt-6.2-sol</text>
+    <text x="24" y="224" font-size="11" fill="#7f1d1d">→ micu/opus → 4router/opus</text>
+
+    <!-- R3 -->
+    <rect x="14" y="246" width="308" height="68" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="24" y="264" font-size="11.5" font-weight="700" fill="#1e40af">R3 · Explicit Routine Dev</text>
+    <rect x="266" y="252" width="46" height="18" rx="4" fill="#3b82f6"/>
+    <text x="289" y="265" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">MED</text>
+    <text x="24" y="283" font-size="11" fill="#1e3a8a">hydrogen → agy/sonnet → M3.1-Flash → M3</text>
+    <text x="24" y="300" font-size="11" fill="#1e3a8a">→ v4-pro → terra → 4router/sonnet</text>
+
+    <!-- R4 -->
+    <rect x="14" y="322" width="308" height="64" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="24" y="340" font-size="11.5" font-weight="700" fill="#166534">R4 · Short / Mechanical (tokens &lt; 144k)</text>
+    <rect x="266" y="328" width="46" height="18" rx="4" fill="#22c55e"/>
+    <text x="289" y="341" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">LOW</text>
+    <text x="24" y="359" font-size="11" fill="#14532d">codex/gpt-6-luna → deepseek-flash</text>
+    <text x="24" y="375" font-size="11" fill="#14532d">→ M3.1-Flash → gemini-3.8-flash</text>
+
+    <!-- Default -->
+    <rect x="14" y="394" width="308" height="66" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+    <text x="24" y="412" font-size="11" font-weight="700" fill="#334155">Default Fallback Chain (1→16)</text>
+    <text x="24" y="429" font-size="10.5" fill="#475569">Starts at hydrogen → sonnet → MiniMax →</text>
+    <text x="24" y="446" font-size="10.5" fill="#475569">DeepSeek → Muze → 4router → Codex</text>
+  </g>
+
+  <!-- ==================== CARD 3: antigravity-pro ==================== -->
+  <g transform="translate(752, 92)" filter="url(#shadow)">
+    <rect x="0" y="0" width="336" height="474" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <path d="M0 12 Q0 0 12 0 L324 0 Q336 0 336 12 L336 66 L0 66 Z" fill="url(#hdr3)"/>
+    <text x="18" y="30" font-size="16" font-weight="700" fill="#ffffff">3. group/antigravity-pro</text>
+    <text x="18" y="51" font-size="12" fill="#ede9fe">Pure agy-cli · Long-Context &amp; Vision</text>
+
+    <!-- Meta Badges -->
+    <rect x="14" y="78" width="136" height="24" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+    <text x="82" y="94" font-size="11" font-weight="600" fill="#5b21b6" text-anchor="middle">gemini-3.8-flash</text>
+    <rect x="156" y="78" width="76" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="194" y="94" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">8 Slots</text>
+    <rect x="238" y="78" width="84" height="24" rx="6" fill="#fae8ff" stroke="#f0abfc"/>
+    <text x="280" y="94" font-size="11" font-weight="600" fill="#86198f" text-anchor="middle">512k Ctx</text>
+
+    <!-- R1 -->
+    <rect x="14" y="114" width="308" height="42" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="24" y="131" font-size="11.5" font-weight="700" fill="#475569">R1 · compacting</text>
+    <text x="24" y="147" font-size="11" fill="#334155">hydrogen:med → neon:med</text>
+
+    <!-- R2 -->
+    <rect x="14" y="162" width="308" height="46" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="24" y="180" font-size="11.5" font-weight="700" fill="#991b1b">R2 · Hard / Multi-Source Conflict</text>
+    <rect x="266" y="168" width="46" height="18" rx="4" fill="#ef4444"/>
+    <text x="289" y="181" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">HIGH</text>
+    <text x="24" y="198" font-size="11" fill="#7f1d1d">neon:high → argon:high → opus:high</text>
+
+    <!-- R3 -->
+    <rect x="14" y="214" width="308" height="46" rx="8" fill="#fff7ed" stroke="#fdba74"/>
+    <text x="24" y="232" font-size="11.5" font-weight="700" fill="#9a3412">R3 · Long Context (tokens ≥ 200k)</text>
+    <rect x="266" y="220" width="46" height="18" rx="4" fill="#ef4444"/>
+    <text x="289" y="233" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">HIGH</text>
+    <text x="24" y="250" font-size="11" fill="#7c2d12">neon:high → argon:high → opus:high</text>
+
+    <!-- R4 & R5 -->
+    <rect x="14" y="266" width="308" height="62" rx="8" fill="#f5f3ff" stroke="#c4b5fd"/>
+    <text x="24" y="284" font-size="11.5" font-weight="700" fill="#5b21b6">R4 / R5 · Two-Tier Vision (images)</text>
+    <text x="24" y="302" font-size="11" fill="#4c1d95">R4 Simple &lt;144k: hydrogen:med → neon:high</text>
+    <text x="24" y="318" font-size="11" fill="#4c1d95">R5 Complex: neon:high → argon:high → hydro</text>
+
+    <!-- R6 -->
+    <rect x="14" y="334" width="308" height="48" rx="8" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="24" y="352" font-size="11.5" font-weight="700" fill="#166534">R6 · Pure Short QA (&lt;144k, no edits)</text>
+    <rect x="266" y="340" width="46" height="18" rx="4" fill="#22c55e"/>
+    <text x="289" y="353" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">LOW</text>
+    <text x="24" y="371" font-size="11" fill="#14532d">gemini-3.8-flash:low → hydrogen:low</text>
+
+    <!-- Default -->
+    <rect x="14" y="388" width="308" height="72" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-dasharray="4 3"/>
+    <text x="24" y="406" font-size="11" font-weight="700" fill="#1e40af">Default = Routine Dev (Generic Cls)</text>
+    <rect x="266" y="394" width="46" height="18" rx="4" fill="#3b82f6"/>
+    <text x="289" y="407" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">MED</text>
+    <text x="24" y="424" font-size="10.5" fill="#1e3a8a">hydrogen:med → sonnet:med → neon:med</text>
+    <text x="24" y="441" font-size="10.5" fill="#475569">All 8 member slots lock effort explicitly</text>
+  </g>
+
+  <!-- Footer Banner -->
+  <rect x="32" y="582" width="1056" height="40" rx="10" fill="#0f172a"/>
+  <text x="560" y="607" font-size="12.5" font-weight="600" fill="#f8fafc" text-anchor="middle">
+    Key Principles:  ① Explicit Routine Rule for Dedicated Classifiers (jev)   ·   ② &lt;144k Gate Protects Prompt Cache   ·   ③ Effort Lock Prevents Cost/Quality Inversion
+  </text>
+</svg>
