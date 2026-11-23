@@ -1,34 +1,30 @@
 # OMP + Magpie Smart Workflow
 
+[简体中文](README.zh-CN.md)
+
 **Route by task difficulty, then hand bounded implementation to a smaller model without starting a new conversation.** Magpie chooses the model for the turn; the OMP extension handles the optional switch after planning.
 
-## 中文介绍：工作流架构
+## Workflow architecture
 
-这套工作流不要求用户事先选模型，也不把每个复杂任务都转交给更轻的模型。**Magpie 决定这一轮由谁开始，OMP 决定规划完成后要不要换模型继续。** 交接留在同一会话，不用重新解释问题或复制上下文。
+You do not need to choose a model up front, and not every complex task is handed off. **Magpie decides which model starts the turn; OMP decides whether to switch after planning.** The handoff stays in the same conversation, so there is no need to restate the problem or copy context.
 
 ```mermaid
 flowchart TB
-    A[用户向 OMP 提交新任务] --> R{Magpie 路由组判断任务类型}
-    R -->|明确小任务| F[DeepSeek Flash 优先]
-    R -->|常规任务或未匹配| T[Terra 优先]
-    R -->|复杂任务| S[Sol 优先，Opus 后备]
-    F --> D[完成本轮]
+    A[User submits a new task in OMP] --> R{Magpie classifies the task}
+    R -->|Clearly small task| F[Prefer DeepSeek Flash]
+    R -->|Routine or unmatched task| T[Prefer Terra]
+    R -->|Complex task| S[Prefer Sol, with Opus as fallback]
+    F --> D[Finish the turn]
     T --> D
-    S --> P[强模型调查、定位并制定方案]
-    P --> H{OMP 核对实际模型和交接决定}
-    H -->|方案明确、实施低风险且可验证| I[切换到 @smol，按方案实施并验证]
-    H -->|仍需判断或无法核对实际模型| K[留在路由组，不自动交接]
+    S --> P[Strong model investigates and plans]
+    P --> H{OMP checks the serving model and handoff decision}
+    H -->|Bounded, low-risk, verifiable work| I[Switch to @smol to implement and verify]
+    H -->|More judgment needed or model unverified| K[Stay on the routing group, no handoff]
     I --> D
     K --> D
 ```
 
-**例子：修复任务调度器偶发的重复执行。** Sol 先追踪重试和并发路径。如果已经定位到同一个任务能被两名 worker 同时认领，并明确了修复点、要保持的不变量和回归用例，就可以把这些实施细节交给 `@smol`（示例配置里是 Terra）。如果还不能判断锁和事务的边界，就选择 `keep`，留在路由组继续调查。
-
-- **路由是优先顺序，不是固定分配。** 模型失败时 Magpie 可以选后备；OMP 扩展按当前会话与响应 ID 核对已完成的路由记录，不凭模型选择器里显示的组名判断。
-- **想让下一条消息重新路由，等当前任务结束再发。** 排队的 follow-up 可能沿用 `@smol`；手动切换模型、思考级别或模式后，扩展不会擅自切回。
-- **交接不改变工具审批。** 它不是权限或写入防护；使用原生 Prewalk 时请关闭本扩展，避免两套机制同时接管。
-
-想复现这套配置：先按 [Magpie 路由示例](examples/magpie-routing.md) 建组，再合并 [OMP 模型角色配置](examples/omp-config.yml)，安装扩展并重启 OMP。模型可以替换成你自己有权限使用的版本，细节见下方 [Install](#install)。
+**Example: fix intermittent duplicate execution in a scheduler.** Sol first traces retries and concurrent execution. If it confirms that two workers can claim the same task and can specify the fix, the invariants to preserve, and a regression case, it can hand implementation to `@smol` (Terra in this example). If the lock and transaction boundaries are still unclear, it chooses `keep` and continues investigating on the routing group.
 
 ## Routing reference
 
