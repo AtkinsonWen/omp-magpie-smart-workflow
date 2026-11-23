@@ -1,6 +1,29 @@
-# Merge these modelRoles into your existing OMP config, after connecting Magpie.
+# Merge the relevant blocks into your active OMP config (~/.omp/agent/config.yml)
+# after connecting OMP to your local Magpie gateway. Do not replace the whole file.
+
 modelRoles:
+  # Pick your preferred default group:
+  # - magpie/group/smart-workflow  (quality primary + auto-model-handoff.ts)
+  # - magpie/group/smart-omni      (cross-provider failover & token savings)
+  # - magpie/group/antigravity-pro (pure agy-cli long-context & vision)
   default: magpie/group/smart-workflow
+
+  # @smol must point to a direct tool-capable execution model (NOT a routing group).
   smol: magpie/muze/gpt-6.1-terra
+
+  # Direct strong planner roles for manual escalation (`omp --model @slow`) or Prewalk.
   slow: magpie/muze/gpt-6.2-sol
   plan: magpie/muze/gpt-6.2-sol
+
+# Let Magpie group rules and member suffixes (:low / :medium / :high) control effort.
+defaultThinkingLevel: auto
+
+# Optional: native Prewalk config (disable auto-model-handoff.ts when using Prewalk).
+prewalk:
+  from: "@slow"
+
+# Optional: observability helpers for monitoring cache hit rate and turn cost.
+display:
+  showTurnTime: true
+  cacheMissMarker: true
+  showTokenUsage: true
